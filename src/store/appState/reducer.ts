@@ -4,13 +4,18 @@ import {
   SET_MESSAGE,
   CLEAR_MESSAGE,
 } from "./actions";
-import { AppStateActionTypes } from "./types";
+import { AppState, AppStateActionTypes } from "./types";
 
-const initialState = {
+const initialState: AppState = {
   loading: false,
-  message: null,
+  message: {
+    variant: undefined,
+    dismissable: undefined,
+    text: undefined,
+  },
 };
 
+// eslint-disable-next-line
 export default (state = initialState, action: AppStateActionTypes) => {
   switch (action.type) {
     case APP_LOADING:
@@ -23,7 +28,10 @@ export default (state = initialState, action: AppStateActionTypes) => {
       return { ...state, message: action.payload };
 
     case CLEAR_MESSAGE:
-      return { ...state, message: null };
+      return {
+        ...state,
+        message: initialState.message,
+      };
 
     default:
       return state;

@@ -1,15 +1,24 @@
-import { UserActionTypes } from "./types";
+import { UserActionTypes, UserState } from "./types";
 import { LOGIN_SUCCESS, LOG_OUT, TOKEN_STILL_VALID } from "./types";
 
-const initialState = {
+const initialState: UserState = {
   token: localStorage.getItem("token"),
-  name: null,
+  id: null,
+  firstName: null,
+  lastName: null,
   email: null,
+  city: null,
+  country: null,
+  accountBlocked: null,
+  createdAt: null,
+  updatedAt: null,
 };
 
+// eslint-disable-next-line
 export default (state = initialState, action: UserActionTypes) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
+      // @ts-ignore
       localStorage.setItem("token", action.payload.token);
       return { ...state, ...action.payload };
 

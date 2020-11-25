@@ -1,4 +1,5 @@
-import { AppState } from "./types";
+import { RootState } from "../rootReducer";
+// import { AppState } from "./types";
 
-export const selectAppLoading = (state: AppState) => state.appState.loading;
-export const selectMessage = (state: AppState) => state.appState.message;
+export const selectAppLoading = (state: RootState) => state.appState.loading;
+export const selectMessage = (state: RootState) => state.appState.message;

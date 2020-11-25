@@ -1,5 +1,6 @@
+import { RootState } from "../rootReducer";
 import { UserState } from "./types";
 
-export const selectToken = (state: UserState) => state.user.token;
+export const selectToken = (state: RootState) => state.user.token;
 
-export const selectUser = (state: UserState) => state.user;
+export const selectUser = (state: RootState) => state.user;

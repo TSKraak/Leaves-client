@@ -1,0 +1,13 @@
+.title-container {
+  display: flex;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+
+  .title-text {
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+    color: rgb(23, 119, 23);
+    font-family: "Architects Daughter", cursive, Calibri;
+  }
+}

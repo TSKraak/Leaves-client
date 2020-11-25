@@ -12,8 +12,10 @@ import {
   LOG_OUT,
   TOKEN_STILL_VALID,
   User,
+  UserWithoutToken,
   UserActionTypes,
 } from "./types";
+import { AppThunk } from "../types";
 
 const loginSuccess = (userWithToken: User): UserActionTypes => {
   return {
@@ -22,15 +24,20 @@ const loginSuccess = (userWithToken: User): UserActionTypes => {
   };
 };
 
-const tokenStillValid = (userWithoutToken: {}): UserActionTypes => ({
-  // ----------------------------------------------------------------EMPTY OBJECT OR SET UP A TYPE??
+const tokenStillValid = (
+  userWithoutToken: UserWithoutToken
+): UserActionTypes => ({
   type: TOKEN_STILL_VALID,
   payload: userWithoutToken,
 });
 
 export const logOut = (): UserActionTypes => ({ type: LOG_OUT });
 
-export const signUp = (name: string, email: string, password: string) => {
+export const signUp = (
+  name: string,
+  email: string,
+  password: string
+): AppThunk => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
@@ -56,7 +63,7 @@ export const signUp = (name: string, email: string, password: string) => {
   };
 };
 
-export const login = (email: string, password: string) => {
+export const login = (email: string, password: string): AppThunk => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
@@ -86,7 +93,7 @@ export const login = (email: string, password: string) => {
   };
 };
 
-export const getUserWithStoredToken = () => {
+export const getUserWithStoredToken = (): AppThunk => {
   return async (dispatch, getState) => {
     // get token from the state
     const token = selectToken(getState());
