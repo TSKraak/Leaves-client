@@ -1,29 +1,32 @@
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
 export const LOG_OUT = "LOG_OUT";
-export const UPDATE_USER = "UPDATE_USER";
+export const UPDATE_SUCCESS = "UPDATE_SUCCESS";
+export const UPDATE_PASSWORD_SUCCESS = "UPDATE_PASSWORD_SUCCESS";
 
 export interface UserState {
-  token: string | null;
-  id: number | null;
-  firstName: string | null;
-  lastName: string | null;
-  email: string | null;
-  city: string | null;
-  country: string | null;
-  accountBlocked: boolean | null;
-  createdAt: string | null;
-  updatedAt: string | null;
+  token: string | undefined;
+  id: number | undefined;
+  firstName: string | undefined;
+  lastName: string | undefined;
+  email: string | undefined;
+  city: string | undefined;
+  country: string | undefined;
+  imageUrl: string | undefined;
+  accountBlocked: boolean | undefined;
+  createdAt: string | undefined;
+  updatedAt: string | undefined;
 }
 
 export interface User {
-  token: string | null;
+  token: string | undefined;
   id: number;
   firstName: string;
   lastName: string;
   email: string;
   city: string;
   country: string;
+  imageUrl: string;
   accountBlocked: boolean;
   createdAt: string;
   updatedAt: string;
@@ -36,9 +39,23 @@ export interface UserWithoutToken {
   email: string;
   city: string;
   country: string;
+  imageUrl: string;
   accountBlocked: boolean;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface UpdateUser {
+  firstName: string | undefined;
+  lastName: string | undefined;
+  email: string | undefined;
+  city: string | undefined;
+  country: string | undefined;
+  imageUrl: string | undefined;
+}
+
+export interface UpdateUserPassword {
+  password: string | undefined;
 }
 
 interface LoginAction {
@@ -56,12 +73,18 @@ interface TokenValidAction {
 }
 
 interface UpdateUserAction {
-  type: typeof UPDATE_USER;
-  payload: Partial<User>;
+  type: typeof UPDATE_SUCCESS;
+  payload: Partial<UpdateUser>;
+}
+
+interface UpdateUserPasswordAction {
+  type: typeof UPDATE_PASSWORD_SUCCESS;
+  payload: UpdateUserPassword;
 }
 
 export type UserActionTypes =
   | LoginAction
   | LogoutAction
   | TokenValidAction
-  | UpdateUserAction;
+  | UpdateUserAction
+  | UpdateUserPasswordAction;

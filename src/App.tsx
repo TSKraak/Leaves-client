@@ -13,6 +13,8 @@ import { getUserWithStoredToken } from "./store/user/actions";
 import HomePage from "./pages/HomePage";
 import LeavesPage from "./pages/LeavesPage";
 import LeavesDetailPage from "./pages/LeavesDetailPage";
+import ProfilePage from "./pages/ProfilePage";
+import MyLeavesPage from "./pages/MyLeaves";
 
 const NotFound = () => {
   return <h3>Oops, sorry. Page doesn't exist.</h3>;
@@ -57,6 +59,14 @@ function App() {
 
         <Route exact path="/leaves/:id?">
           <LeavesDetailPage />
+        </Route>
+
+        <Route exact path="/myleaves">
+          <MyLeavesPage />
+        </Route>
+
+        <Route exact path="/profile">
+          <ProfilePage />
         </Route>
 
         <Route exact path="/login">

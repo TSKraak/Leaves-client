@@ -15,6 +15,7 @@ export default function SignUp() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -24,7 +25,7 @@ export default function SignUp() {
 
   useEffect(() => {
     if (token !== null) {
-      history.push("/");
+      // history.push("/");
     }
   }, [token, history]);
 
@@ -101,9 +102,6 @@ export default function SignUp() {
             placeholder="Enter email"
             required
           />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
@@ -116,6 +114,23 @@ export default function SignUp() {
             required
           />
         </Form.Group>
+        <Form.Group controlId="formBasicCheckPassword">
+          <Form.Label>Password check</Form.Label>
+          <Form.Control
+            value={checkPassword}
+            onChange={(event) => setCheckPassword(event.target.value)}
+            type="password"
+            placeholder="Retype password"
+            required
+          />
+        </Form.Group>
+        {!password ? (
+          <p>Please enter a new password.</p>
+        ) : password === checkPassword ? null : (
+          <p style={{ color: "red" }}>
+            The passwords don't match. Please check again.
+          </p>
+        )}
         <Form.Group controlId="formBasicImageUrl">
           <Form.Label>Profile picture url</Form.Label>
           <Form.Control
@@ -137,9 +152,13 @@ export default function SignUp() {
           </div>
         ) : null}
         <Form.Group className="mt-5">
-          <Button variant="primary" type="submit" onClick={submitForm}>
-            Sign up
-          </Button>
+          {!email || !password ? (
+            <p style={{ color: "red" }}>Enter email and password</p>
+          ) : password === checkPassword ? (
+            <Button variant="primary" type="submit" onClick={submitForm}>
+              Sign up
+            </Button>
+          ) : null}
         </Form.Group>
         <Link to="/login">Click here to log in</Link>
       </Form>
