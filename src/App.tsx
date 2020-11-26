@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import "./App.scss";
 import leaveslogo from "./images/leaveslogo.png";
-import { Switch, Route, NavLink } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
-import Image from "react-bootstrap/Image";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
@@ -49,6 +48,10 @@ function App() {
         </Route>
 
         <Route exact path="/leaves">
+          <LeavesPage />
+        </Route>
+
+        <Route exact path="/leaves/:favorites">
           <LeavesPage />
         </Route>
 
