@@ -1,10 +1,8 @@
 // @ts-nocheck
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
 
 export default function ImageUploader({ uploadPreset, uploadImageUrl }) {
-  const [imageUrl, setImageUrl] = useState("");
-
   const myCropWidget = async () => {
     const uploadWidget = cloudinary.createUploadWidget(
       {
