@@ -17,7 +17,7 @@ export default function SignUp() {
 
   useEffect(() => {
     if (token !== null) {
-      history.push("/leaves/following");
+      history.push("/leaves/favorites");
     }
   }, [token, history]);
 
