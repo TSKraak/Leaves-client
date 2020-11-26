@@ -1,15 +1,13 @@
 import moment from "moment";
 import React from "react";
 import "./ProfilePage.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import UpdateProfileForm from "../../components/UpdateProfileForm";
 import { selectUser } from "../../store/user/selectors";
-import { Button } from "react-bootstrap";
 
 export default function ProfilePage() {
   const user = useSelector(selectUser);
-  const dispatch = useDispatch();
 
   if (!user.email) {
     return <Redirect to="/"></Redirect>;
@@ -17,7 +15,7 @@ export default function ProfilePage() {
 
   return (
     <div>
-      <h1 className="profile-page-title">{user.firstName}'s Profile</h1>
+      <h2 className="profile-page-title">Your Profile</h2>
       <div className="profile-page-container">
         <div className="profile-information">
           <table style={{ width: "25rem" }} className="doctor-table">
@@ -61,7 +59,6 @@ export default function ProfilePage() {
               </tr>
             </tbody>
           </table>
-          <UpdateProfileForm />
         </div>
         <div className="profile-picture-container">
           <img
@@ -69,13 +66,9 @@ export default function ProfilePage() {
             src={user.imageUrl}
             alt="profile pic"
           />
-          <div>
-            <Button className="edit-picture-button" variant="outline-danger">
-              Edit picture
-            </Button>
-          </div>
         </div>
       </div>
+      <UpdateProfileForm />
     </div>
   );
 }
