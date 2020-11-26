@@ -2,7 +2,6 @@ import React from "react";
 import "./Navigation.scss";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectToken, selectUser } from "../../store/user/selectors";
 import NavbarItem from "./NavbarItem";
