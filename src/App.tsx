@@ -58,11 +58,11 @@ function App() {
           <LeavesPage />
         </Route>
 
-        <Route exact path="/leaves/:favorites">
+        <Route exact path="/leaves/favorites">
           <LeavesPage />
         </Route>
 
-        <Route exact path="/leaves/:id?">
+        <Route exact path="/leaves/:id">
           <LeavesDetailPage />
         </Route>
 
