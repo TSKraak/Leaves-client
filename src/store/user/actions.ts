@@ -111,7 +111,7 @@ export const getUserWithStoredToken = (): AppThunk => {
     const token = selectToken(getState());
 
     // if we have no token, stop
-    if (token === undefined) return;
+    if (!token) return;
 
     dispatch(appLoading());
     try {

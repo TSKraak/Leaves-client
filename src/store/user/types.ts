@@ -5,21 +5,21 @@ export const UPDATE_SUCCESS = "UPDATE_SUCCESS";
 export const UPDATE_PASSWORD_SUCCESS = "UPDATE_PASSWORD_SUCCESS";
 
 export interface UserState {
-  token: string | undefined;
-  id: number | undefined;
-  firstName: string | undefined;
-  lastName: string | undefined;
-  email: string | undefined;
-  city: string | undefined;
-  country: string | undefined;
-  imageUrl: string | undefined;
-  accountBlocked: boolean | undefined;
-  createdAt: string | undefined;
-  updatedAt: string | undefined;
+  token?: string;
+  id?: number;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  city?: string;
+  country?: string;
+  imageUrl?: string;
+  accountBlocked?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface User {
-  token: string | undefined;
+  token?: string;
   id: number;
   firstName: string;
   lastName: string;
