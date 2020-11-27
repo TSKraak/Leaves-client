@@ -12,7 +12,7 @@ export default function AllLeaves() {
   const plants = useSelector(selectAllPlants);
 
   useEffect(() => {
-    if (plants) {
+    if (plants.length) {
       return undefined;
     }
     dispatch(fetchAllPlants());
