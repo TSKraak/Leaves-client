@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./HomePage.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
 import { fetchPlantSuggestions } from "../../store/plants/actions";
 import { selectSuggestions } from "../../store/plants/selectors";
@@ -21,7 +21,7 @@ export default function HomePage() {
       <Container className="plant-suggestions-container">
         {plants.map((plant) => {
           return (
-            <Row className="plant-suggestion-card">
+            <Row key={plant.id} className="plant-suggestion-card">
               <Col xs={2.5} md={2.5}>
                 <img
                   className="plant-sugg-picture"

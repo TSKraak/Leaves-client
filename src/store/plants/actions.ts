@@ -22,7 +22,6 @@ export const fetchPlantSuggestions = (): AppThunk => {
     try {
       const res = await axios.get(`${apiUrl}/plants/suggestions`);
       const plants = res.data;
-      console.log("plants", plants);
 
       dispatch(addPlantSuggestions(plants));
     } catch (error) {
