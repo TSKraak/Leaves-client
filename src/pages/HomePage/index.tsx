@@ -30,7 +30,7 @@ export default function HomePage() {
                 />
               </Col>
               <Col>
-                <NavLink className="plant-sugg-link" to={`/${plant.id}`}>
+                <NavLink className="plant-sugg-link" to={`/plants/${plant.id}`}>
                   <h4>
                     {plant.name} ({plant.scientificName})
                   </h4>

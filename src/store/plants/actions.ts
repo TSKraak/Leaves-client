@@ -17,7 +17,6 @@ const addPlantSuggestions = (
 export const fetchPlantSuggestions = (): AppThunk => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
-    console.log("HELLO????");
 
     try {
       const res = await axios.get(`${apiUrl}/plants/suggestions`);

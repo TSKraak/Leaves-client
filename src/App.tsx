@@ -50,7 +50,7 @@ function App() {
           <HomePage />
         </Route>
 
-        <Route exact path="/:id">
+        <Route exact path="/plants/:id">
           <PlantSuggestionDetailsPage />
         </Route>
 

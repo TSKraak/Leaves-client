@@ -10,7 +10,7 @@ interface NavBarProps {
 export default function NavbarItem(props: NavBarProps) {
   return (
     <Nav.Item>
-      <Nav.Link as={NavLink} to={props.path}>
+      <Nav.Link as={NavLink} exact to={props.path}>
         {props.linkText}
       </Nav.Link>
     </Nav.Item>
