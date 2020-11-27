@@ -1,5 +1,5 @@
-import moment from "moment";
 import React from "react";
+import moment from "moment";
 import "./ProfilePage.scss";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";

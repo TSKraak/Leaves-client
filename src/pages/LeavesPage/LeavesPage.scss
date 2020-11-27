@@ -1,0 +1,28 @@
+.leaves-page-container {
+  text-align: center;
+
+  h1 {
+    color: rgb(23, 119, 23);
+    font-family: "Architects Daughter", cursive, Calibri;
+    font-size: 3rem;
+  }
+
+  .leaves-links-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 30vw;
+    margin-right: 30vw;
+    margin-bottom: 2rem;
+
+    .leave-link-container {
+      width: 20vw;
+
+      .leave-link {
+        color: grey;
+      }
+      .leave-link :hover {
+        color: black;
+      }
+    }
+  }
+}

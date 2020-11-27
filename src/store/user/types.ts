@@ -21,12 +21,12 @@ export interface UserState {
 export interface User {
   token?: string;
   id: number;
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   email: string;
-  city: string;
-  country: string;
-  imageUrl: string;
+  city?: string;
+  country?: string;
+  imageUrl?: string;
   accountBlocked: boolean;
   createdAt: string;
   updatedAt: string;
@@ -46,16 +46,16 @@ export interface UserWithoutToken {
 }
 
 export interface UpdateUser {
-  firstName: string | undefined;
-  lastName: string | undefined;
-  email: string | undefined;
-  city: string | undefined;
-  country: string | undefined;
-  imageUrl: string | undefined;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  city?: string;
+  country?: string;
+  imageUrl?: string;
 }
 
 export interface UpdateUserPassword {
-  password: string | undefined;
+  password?: string;
 }
 
 interface LoginAction {
