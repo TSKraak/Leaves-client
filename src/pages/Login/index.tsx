@@ -16,7 +16,7 @@ export default function SignUp() {
   const history = useHistory();
 
   useEffect(() => {
-    if (token !== undefined) {
+    if (token) {
       history.push("/leaves/favorites");
     }
   }, [token, history]);

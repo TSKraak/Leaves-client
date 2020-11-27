@@ -15,6 +15,7 @@ import LeavesPage from "./pages/LeavesPage";
 import LeavesDetailPage from "./pages/LeavesDetailPage";
 import ProfilePage from "./pages/ProfilePage";
 import MyLeavesPage from "./pages/MyLeaves";
+import PlantSuggestionDetailsPage from "./pages/PlantSuggestionDetailsPage";
 
 const NotFound = () => {
   return <h3>Oops, sorry. Page doesn't exist.</h3>;
@@ -47,6 +48,10 @@ function App() {
       <Switch>
         <Route exact path="/">
           <HomePage />
+        </Route>
+
+        <Route exact path="/:id">
+          <PlantSuggestionDetailsPage />
         </Route>
 
         <Route exact path="/leaves">
