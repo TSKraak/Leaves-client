@@ -1,7 +1,7 @@
-import FavoriteLeaves from "../../components/FavoriteLeaves";
 import {
   ADD_ALL_PLANTS,
   ADD_FAVORITE_USER_PLANTS,
+  ADD_PLANT_DETAILS,
   ADD_PLANT_SUGGESTIONS,
   PlantActionTypes,
   PlantsState,
@@ -23,6 +23,27 @@ const initialState: PlantsState = {
     updatedAt: "",
     following: [],
   },
+  plantDetails: {
+    id: 0,
+    name: "",
+    scientificName: "",
+    description: "",
+    imageUrl: "",
+    waterPeriodDays: 0,
+    waterAlert: "",
+    fertilisePeriodDays: 0,
+    fertiliseAlert: "",
+    createdAt: "",
+    updatedAt: "",
+    user: {
+      id: 0,
+      email: "",
+      accountBlocked: false,
+      createdAt: "",
+      updatedAt: "",
+      following: [],
+    },
+  },
 };
 
 // eslint-disable-next-line
@@ -36,6 +57,12 @@ export default (state = initialState, action: PlantActionTypes) => {
 
     case ADD_FAVORITE_USER_PLANTS:
       return { ...state, favoriteUserPlants: action.payload };
+
+    case ADD_PLANT_DETAILS:
+      return {
+        ...state,
+        plantDetails: { ...state.plantDetails, ...action.payload },
+      };
 
     default:
       return state;
