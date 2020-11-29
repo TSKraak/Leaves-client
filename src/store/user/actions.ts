@@ -13,6 +13,7 @@ import {
   TOKEN_STILL_VALID,
   UPDATE_SUCCESS,
   UPDATE_PASSWORD_SUCCESS,
+  ADD_FAVORITE_USER,
   DELETE_FAVORITE_USER,
   User,
   UserWithoutToken,
@@ -234,12 +235,25 @@ export const updatePassword = (password: string | undefined): AppThunk => {
   };
 };
 
+const setNewFavoriteUser = (
+  newFollowingUsers: FollowingUserObject
+): UserActionTypes => {
+  return {
+    type: ADD_FAVORITE_USER,
+    payload: newFollowingUsers,
+  };
+};
+
 export const addFavoriteUser = (followingUserId: number): AppThunk => async (
   dispatch,
   getState
 ) => {
   dispatch(appLoading());
   const token = selectToken(getState());
+  // const followingUsers = getState().user.following;
+  const newFollowingUser = { id: followingUserId, followingUsers: {} };
+  // const newFollowingUsers = followingUsers?.push(newFollowingUser);
+  // console.log("newFollowingUsers", newFollowingUsers);
 
   try {
     await axios.post(
@@ -251,6 +265,7 @@ export const addFavoriteUser = (followingUserId: number): AppThunk => async (
     );
 
     dispatch(setMessage("success", true, "Started following user."));
+    dispatch(setNewFavoriteUser(newFollowingUser));
   } catch (error) {
     if (error.response) {
       console.log(error.response.data.message);

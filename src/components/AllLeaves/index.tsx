@@ -17,7 +17,7 @@ export default function AllLeaves() {
   const plants = useSelector(selectAllPlants);
   const user = useSelector(selectUser);
   const followingUsers = useSelector(selectFollowingUsers);
-
+  console.log("followingUsers", followingUsers);
   const clickToFollow = async (id: number) => {
     await dispatch(addFavoriteUser(id));
     dispatch(fetchFavoriteUserPlants());
@@ -65,21 +65,21 @@ export default function AllLeaves() {
                 </Card.Subtitle>
                 <Card.Text>{plant.description}</Card.Text>
               </Card.Body>
-              {followingUsers?.includes(plant.id) ? (
-                <Button
-                  className="mb-4"
-                  variant="outline-success"
-                  onClick={() => clickToFollow(plant.user.id)}
-                >
-                  Follow
-                </Button>
-              ) : (
+              {followingUsers.includes(plant.user.id) ? (
                 <Button
                   className="mb-4"
                   variant="outline-danger"
                   onClick={() => clickToUnFollow(plant.user.id)}
                 >
                   Unfollow
+                </Button>
+              ) : (
+                <Button
+                  className="mb-4"
+                  variant="outline-success"
+                  onClick={() => clickToFollow(plant.user.id)}
+                >
+                  Follow
                 </Button>
               )}
               <Card.Footer style={{ alignSelf: "stretch" }}>

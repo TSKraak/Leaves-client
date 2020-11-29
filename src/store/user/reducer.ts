@@ -1,4 +1,5 @@
 import {
+  ADD_FAVORITE_USER,
   DELETE_FAVORITE_USER,
   UPDATE_SUCCESS,
   UserActionTypes,
@@ -50,6 +51,9 @@ export default (state = initialState, action: UserActionTypes) => {
 
     case DELETE_FAVORITE_USER:
       return { ...state, following: action.payload };
+
+    case ADD_FAVORITE_USER:
+      return { ...state, following: [...state.following, action.payload] };
 
     default:
       return state;

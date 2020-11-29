@@ -4,6 +4,7 @@ export const LOG_OUT = "LOG_OUT";
 export const UPDATE_SUCCESS = "UPDATE_SUCCESS";
 export const UPDATE_PASSWORD_SUCCESS = "UPDATE_PASSWORD_SUCCESS";
 export const DELETE_FAVORITE_USER = "DELETE_FAVORITE_USER";
+export const ADD_FAVORITE_USER = "ADD_FAVORITE_USER";
 
 export interface UserState {
   token?: string;
@@ -96,10 +97,16 @@ interface DeleteFavoriteUserAction {
   payload: FollowingUserObject[];
 }
 
+interface AddFavoriteUserAction {
+  type: typeof ADD_FAVORITE_USER;
+  payload: FollowingUserObject;
+}
+
 export type UserActionTypes =
   | LoginAction
   | LogoutAction
   | TokenValidAction
   | UpdateUserAction
   | UpdateUserPasswordAction
-  | DeleteFavoriteUserAction;
+  | DeleteFavoriteUserAction
+  | AddFavoriteUserAction;
