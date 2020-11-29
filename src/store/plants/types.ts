@@ -2,6 +2,7 @@ import { FollowingUserObject, User } from "../user/types";
 
 export const ADD_PLANT_SUGGESTIONS = "ADD_PLANT_SUGGESTIONS";
 export const ADD_ALL_PLANTS = "ADD_ALL_PLANTS";
+export const ADD_MY_PLANTS = "ADD_MY_PLANTS";
 export const ADD_FAVORITE_USER_PLANTS = "ADD_FAVORITE_USER_PLANTS";
 export const ADD_PLANT_DETAILS = "ADD_PLANT_DETAILS";
 
@@ -88,6 +89,11 @@ interface AddAllPlantsAction {
   payload: Plant[];
 }
 
+interface AddMyPlantsAction {
+  type: typeof ADD_MY_PLANTS;
+  payload: Plant[];
+}
+
 interface AddFavoriteUserPlantsAction {
   type: typeof ADD_FAVORITE_USER_PLANTS;
   payload: UserWithFavoriteUsers;
@@ -101,5 +107,6 @@ interface AddPlantDetailsAction {
 export type PlantActionTypes =
   | AddPlantSuggestionsAction
   | AddAllPlantsAction
+  | AddMyPlantsAction
   | AddFavoriteUserPlantsAction
   | AddPlantDetailsAction;

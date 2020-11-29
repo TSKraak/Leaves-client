@@ -10,6 +10,15 @@ export const selectAllPlants = (state: RootState) => {
   return sortedPlants;
 };
 
+export const selectMyPlants = (state: RootState) => {
+  const plants = state.plants.all;
+  const myPlants = plants.filter((plant) => plant.user.id === state.user.id);
+  const sortedPlants = myPlants.sort(function (a, b) {
+    return b.id - a.id;
+  });
+  return sortedPlants;
+};
+
 export const selectFavoriteUsersPlants = (state: RootState) => {
   const plants: Plant[] = [];
 

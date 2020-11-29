@@ -16,6 +16,7 @@ import {
   PlantSuggestions,
   UserWithFavoriteUsers,
   ADD_PLANT_DETAILS,
+  ADD_MY_PLANTS,
 } from "./types";
 import { selectToken } from "../user/selectors";
 
