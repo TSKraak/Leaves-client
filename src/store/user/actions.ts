@@ -149,12 +149,12 @@ const updateSuccess = (updateUser: Partial<UpdateUser>): UserActionTypes => {
 };
 
 export const updateProfile = (
-  firstName: string | undefined,
-  lastName: string | undefined,
-  city: string | undefined,
-  country: string | undefined,
-  imageUrl: string | undefined,
-  email: string | undefined
+  firstName?: string,
+  lastName?: string,
+  city?: string,
+  country?: string,
+  imageUrl?: string,
+  email?: string
 ): AppThunk => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
@@ -201,7 +201,7 @@ const updatePasswordSuccess = (
   };
 };
 
-export const updatePassword = (password: string | undefined): AppThunk => {
+export const updatePassword = (password: string): AppThunk => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     const token = selectToken(getState());

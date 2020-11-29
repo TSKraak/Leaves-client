@@ -18,7 +18,7 @@ export default function ProfilePage() {
       <h2 className="profile-page-title">Your Profile</h2>
       <div className="profile-page-container">
         <div className="profile-information">
-          <table style={{ width: "25rem" }} className="doctor-table">
+          <table style={{ width: "25rem" }} className="profile-table">
             <thead>
               <tr>
                 <th>Your information</th>
@@ -26,35 +26,35 @@ export default function ProfilePage() {
             </thead>
             <tbody>
               <tr>
-                <td>User id</td>
+                <td className="profile-detail-column-1">User id</td>
                 <td>{user.id}</td>
               </tr>
               <tr>
-                <td>First name</td>
+                <td className="profile-detail-column-1">First name</td>
                 <td>{user.firstName}</td>
               </tr>
               <tr>
-                <td>Last name</td>
+                <td className="profile-detail-column-1">Last name</td>
                 <td>{user.lastName}</td>
               </tr>
               <tr>
-                <td>Email address</td>
+                <td className="profile-detail-column-1">Email address</td>
                 <td>{user.email}</td>
               </tr>
               <tr>
-                <td>City</td>
+                <td className="profile-detail-column-1">City</td>
                 <td>{user.city}</td>
               </tr>
               <tr>
-                <td>Country</td>
+                <td className="profile-detail-column-1">Country</td>
                 <td>{user.country}</td>
               </tr>
               <tr>
-                <td>Account created</td>
+                <td className="profile-detail-column-1">Account created</td>
                 <td>{moment(user.createdAt).format("DD-MM-YYYY HH:mm")}</td>
               </tr>
               <tr>
-                <td>Last updated</td>
+                <td className="profile-detail-column-1">Last updated</td>
                 <td>{moment(user.updatedAt).format("DD-MM-YYYY HH:mm")}</td>
               </tr>
             </tbody>

@@ -3,11 +3,13 @@ import { FollowingUserObject, User } from "../user/types";
 export const ADD_PLANT_SUGGESTIONS = "ADD_PLANT_SUGGESTIONS";
 export const ADD_ALL_PLANTS = "ADD_ALL_PLANTS";
 export const ADD_FAVORITE_USER_PLANTS = "ADD_FAVORITE_USER_PLANTS";
+export const ADD_PLANT_DETAILS = "ADD_PLANT_DETAILS";
 
 export interface PlantsState {
   suggestions: PlantSuggestions[];
   all: Plant[];
   favoriteUserPlants: UserWithFavoriteUsers;
+  plantDetails: Plant;
 }
 
 export interface PlantSuggestions {
@@ -91,7 +93,13 @@ interface AddFavoriteUserPlantsAction {
   payload: UserWithFavoriteUsers;
 }
 
+interface AddPlantDetailsAction {
+  type: typeof ADD_PLANT_DETAILS;
+  payload: Plant;
+}
+
 export type PlantActionTypes =
   | AddPlantSuggestionsAction
   | AddAllPlantsAction
-  | AddFavoriteUserPlantsAction;
+  | AddFavoriteUserPlantsAction
+  | AddPlantDetailsAction;

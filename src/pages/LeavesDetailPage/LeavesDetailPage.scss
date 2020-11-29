@@ -1,27 +1,27 @@
-.profile-page-title {
+.plant-detail-page-title {
   text-align: center;
   color: rgb(23, 119, 23);
   font-family: "Architects Daughter", cursive, Calibri;
   font-size: 3rem;
 }
 
-.profile-page-container {
+.plant-detail-page-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
-  .profile-detail-column-1 {
+  .plant-detail-column-1 {
     width: 12rem;
     font-weight: bold;
   }
 
-  .profile-picture-container {
+  .plant-detail-picture-container {
     display: flex;
     flex-direction: column;
     padding: 1rem;
     text-align: center;
 
-    .profile-picture {
+    .plant-detail-picture {
       height: 20rem;
       width: auto;
       box-shadow: 5px 10px 18px #888888;

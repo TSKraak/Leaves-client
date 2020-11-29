@@ -10,14 +10,13 @@ import {
 import { selectAllPlants } from "../../store/plants/selectors";
 import { NavLink } from "react-router-dom";
 import { addFavoriteUser, removeFavoriteUser } from "../../store/user/actions";
-import { selectFollowingUsers, selectUser } from "../../store/user/selectors";
+import { selectFollowingUsers } from "../../store/user/selectors";
 
 export default function AllLeaves() {
   const dispatch = useDispatch();
   const plants = useSelector(selectAllPlants);
-  const user = useSelector(selectUser);
   const followingUsers = useSelector(selectFollowingUsers);
-  console.log("followingUsers", followingUsers);
+
   const clickToFollow = async (id: number) => {
     await dispatch(addFavoriteUser(id));
     dispatch(fetchFavoriteUserPlants());
