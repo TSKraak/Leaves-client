@@ -250,10 +250,7 @@ export const addFavoriteUser = (followingUserId: number): AppThunk => async (
 ) => {
   dispatch(appLoading());
   const token = selectToken(getState());
-  // const followingUsers = getState().user.following;
   const newFollowingUser = { id: followingUserId, followingUsers: {} };
-  // const newFollowingUsers = followingUsers?.push(newFollowingUser);
-  // console.log("newFollowingUsers", newFollowingUsers);
 
   try {
     await axios.post(

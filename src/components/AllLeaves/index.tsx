@@ -37,7 +37,12 @@ export default function AllLeaves() {
   return (
     <div className="all-leaves-container">
       <Container
-        style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+        }}
       >
         {plants.map((plant) => {
           return (
