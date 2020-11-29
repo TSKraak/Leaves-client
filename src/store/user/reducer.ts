@@ -1,4 +1,10 @@
-import { UPDATE_SUCCESS, UserActionTypes, UserState } from "./types";
+import {
+  ADD_FAVORITE_USER,
+  DELETE_FAVORITE_USER,
+  UPDATE_SUCCESS,
+  UserActionTypes,
+  UserState,
+} from "./types";
 import {
   LOGIN_SUCCESS,
   LOG_OUT,
@@ -19,6 +25,7 @@ const initialState: UserState = {
   accountBlocked: undefined,
   createdAt: undefined,
   updatedAt: undefined,
+  following: [],
 };
 
 // eslint-disable-next-line
@@ -41,6 +48,12 @@ export default (state = initialState, action: UserActionTypes) => {
 
     case UPDATE_PASSWORD_SUCCESS:
       return { ...state, ...action.payload };
+
+    case DELETE_FAVORITE_USER:
+      return { ...state, following: action.payload };
+
+    case ADD_FAVORITE_USER:
+      return { ...state, following: [...state.following, action.payload] };
 
     default:
       return state;

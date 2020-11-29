@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import "./LeavesPage.scss";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import AllLeaves from "../../components/AllLeaves";
 import FavoriteLeaves from "../../components/FavoriteLeaves";
-
-interface Parameters {
-  favorites: "favorites" | undefined;
-}
+import { selectUser } from "../../store/user/selectors";
+import { useSelector } from "react-redux";
 
 export default function LeavesPage() {
-  const params: Parameters = useParams();
   const [favorites, setFavorites] = useState(false);
+  const user = useSelector(selectUser);
 
   const displayLeavesComponent = () => {
     if (favorites) {
@@ -37,22 +35,28 @@ export default function LeavesPage() {
             <h3>All Leaves</h3>
           </NavLink>
         </div>
-        <div className="leave-link-container">
-          <NavLink
-            className="leave-link"
-            activeStyle={{
-              textDecoration: "underline",
-              color: "black",
-            }}
-            exact
-            to="/leaves/favorites"
-            onClick={() => setFavorites(true)}
-          >
-            <h3>Favorites</h3>
-          </NavLink>
-        </div>
+        {user.email ? (
+          <div className="leave-link-container">
+            <NavLink
+              className="leave-link"
+              activeStyle={{
+                textDecoration: "underline",
+                color: "black",
+              }}
+              exact
+              to="/leaves/favorites"
+              onClick={() => setFavorites(true)}
+            >
+              <h3>Favorites</h3>
+            </NavLink>
+          </div>
+        ) : undefined}
       </div>
-      {displayLeavesComponent()}
+      {window.location.href.indexOf("favorites") > -1 ? (
+        <FavoriteLeaves />
+      ) : (
+        displayLeavesComponent()
+      )}
     </div>
   );
 }
