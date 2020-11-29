@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./PlantSuggestionDetailsPage.scss";
-import { Redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { selectSuggestions } from "../../store/plants/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPlantSuggestions } from "../../store/plants/actions";
