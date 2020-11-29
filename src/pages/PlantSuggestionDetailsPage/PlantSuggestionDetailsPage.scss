@@ -1,0 +1,42 @@
+.plant-suggestion-page-title {
+  text-align: center;
+  color: rgb(23, 119, 23);
+  font-family: "Architects Daughter", cursive, Calibri;
+  font-size: 3rem;
+}
+
+.plant-suggestion-page-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .plant-suggestion-information {
+    td {
+      border-top: dashed 1px lightgray;
+      padding-bottom: 1rem;
+      vertical-align: top;
+    }
+
+    .plant-suggestion-column-1 {
+      width: 12rem;
+      font-weight: bold;
+      vertical-align: top;
+      padding-bottom: 1rem;
+    }
+  }
+
+  .plant-suggestion-picture-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    text-align: center;
+
+    .plant-suggestion-picture {
+      height: 20rem;
+      width: auto;
+      box-shadow: 5px 10px 18px #888888;
+      border-radius: 2rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
