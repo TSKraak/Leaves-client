@@ -11,8 +11,12 @@ export default function HomePage() {
   const plants = useSelector(selectSuggestions);
 
   useEffect(() => {
+    if (plants.length) {
+      return undefined;
+    }
+
     dispatch(fetchPlantSuggestions());
-  }, [dispatch]);
+  }, [dispatch, plants.length]);
 
   return (
     <div className="homepage-container">

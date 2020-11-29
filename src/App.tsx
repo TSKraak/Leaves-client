@@ -43,8 +43,8 @@ function App() {
         <span className="title-text">Leaves</span>
       </div>
       <Navigation />
-      <MessageBox />
       {isLoading ? <Loading /> : null}
+      <MessageBox />
       <Switch>
         <Route exact path="/">
           <HomePage />
