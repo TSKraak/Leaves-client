@@ -16,14 +16,14 @@ export interface PlantsState {
 export interface PlantSuggestions {
   id: number;
   name: string;
-  scientificName?: string;
-  imageUrl?: string;
-  shortDescription?: string;
-  description?: string;
-  shortLight?: string;
-  light?: string;
-  shortWater?: string;
-  water?: string;
+  scientificName: string;
+  imageUrl: string;
+  shortDescription: string;
+  description: string;
+  shortLight: string;
+  light: string;
+  shortWater: string;
+  water: string;
   createdAt: string;
   updatedAt: string;
 }
