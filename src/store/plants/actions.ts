@@ -5,10 +5,13 @@ import { appDoneLoading, appLoading, setMessage } from "../appState/actions";
 import {
   ADD_ALL_PLANTS,
   ADD_PLANT_SUGGESTIONS,
+  ADD_FAVORITE_USER_PLANTS,
   Plant,
   PlantActionTypes,
   PlantSuggestions,
+  UserWithFavoriteUsers,
 } from "./types";
+import { selectToken } from "../user/selectors";
 
 const addPlantSuggestions = (
   plantSuggestions: PlantSuggestions[]
@@ -51,6 +54,37 @@ export const fetchAllPlants = (): AppThunk => {
       const plants = res.data;
 
       dispatch(addAllPlants(plants));
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+    }
+    dispatch(appDoneLoading());
+  };
+};
+
+const addFavoriteUserPlants = (
+  favoriteUserPlants: UserWithFavoriteUsers
+): PlantActionTypes => {
+  return { type: ADD_FAVORITE_USER_PLANTS, payload: favoriteUserPlants };
+};
+
+export const fetchFavoriteUserPlants = (): AppThunk => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    const token = selectToken(getState());
+
+    try {
+      const res = await axios.get(`${apiUrl}/plants/following`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const plants = res.data;
+
+      dispatch(addFavoriteUserPlants(plants));
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);

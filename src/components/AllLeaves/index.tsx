@@ -1,22 +1,38 @@
 import React, { useEffect } from "react";
 import "./AllLeaves.scss";
 import moment from "moment";
-import { Card, Container } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllPlants } from "../../store/plants/actions";
+import {
+  fetchAllPlants,
+  fetchFavoriteUserPlants,
+} from "../../store/plants/actions";
 import { selectAllPlants } from "../../store/plants/selectors";
 import { NavLink } from "react-router-dom";
+import { addFavoriteUser, removeFavoriteUser } from "../../store/user/actions";
+import { selectFollowingUsers, selectUser } from "../../store/user/selectors";
 
 export default function AllLeaves() {
   const dispatch = useDispatch();
   const plants = useSelector(selectAllPlants);
+  const user = useSelector(selectUser);
+  const followingUsers = useSelector(selectFollowingUsers);
+
+  const clickToFollow = async (id: number) => {
+    await dispatch(addFavoriteUser(id));
+    dispatch(fetchFavoriteUserPlants());
+  };
+
+  const clickToUnFollow = (id: number) => {
+    dispatch(removeFavoriteUser(id));
+  };
 
   useEffect(() => {
     if (plants.length) {
       return undefined;
     }
     dispatch(fetchAllPlants());
-  }, [dispatch, plants]);
+  }, [dispatch, plants.length]);
 
   return (
     <div className="all-leaves-container">
@@ -49,6 +65,23 @@ export default function AllLeaves() {
                 </Card.Subtitle>
                 <Card.Text>{plant.description}</Card.Text>
               </Card.Body>
+              {followingUsers?.includes(plant.id) ? (
+                <Button
+                  className="mb-4"
+                  variant="outline-success"
+                  onClick={() => clickToFollow(plant.user.id)}
+                >
+                  Follow
+                </Button>
+              ) : (
+                <Button
+                  className="mb-4"
+                  variant="outline-danger"
+                  onClick={() => clickToUnFollow(plant.user.id)}
+                >
+                  Unfollow
+                </Button>
+              )}
               <Card.Footer style={{ alignSelf: "stretch" }}>
                 <small className="text-muted">
                   Posted on:{" "}

@@ -13,11 +13,13 @@ import {
   TOKEN_STILL_VALID,
   UPDATE_SUCCESS,
   UPDATE_PASSWORD_SUCCESS,
+  DELETE_FAVORITE_USER,
   User,
   UserWithoutToken,
   UserActionTypes,
   UpdateUser,
   UpdateUserPassword,
+  FollowingUserObject,
 } from "./types";
 import { AppThunk } from "../types";
 
@@ -230,4 +232,73 @@ export const updatePassword = (password: string | undefined): AppThunk => {
       dispatch(appDoneLoading());
     }
   };
+};
+
+export const addFavoriteUser = (followingUserId: number): AppThunk => async (
+  dispatch,
+  getState
+) => {
+  dispatch(appLoading());
+  const token = selectToken(getState());
+
+  try {
+    await axios.post(
+      `${apiUrl}/user/follow/`,
+      { followingUserId },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    dispatch(setMessage("success", true, "Started following user."));
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.data.message);
+      dispatch(setMessage("danger", true, error.response.data.message));
+    } else {
+      console.log(error.message);
+      dispatch(setMessage("danger", true, error.message));
+    }
+  }
+  dispatch(appDoneLoading());
+};
+
+const deleteFavoriteUser = (
+  newFollowingUsers: FollowingUserObject[]
+): UserActionTypes => {
+  return {
+    type: DELETE_FAVORITE_USER,
+    payload: newFollowingUsers,
+  };
+};
+
+export const removeFavoriteUser = (followingUserId: number): AppThunk => async (
+  dispatch,
+  getState
+) => {
+  dispatch(appLoading());
+  const token = selectToken(getState());
+  const followingUsers = getState().user.following;
+
+  const newFollowingUsers = followingUsers?.filter(
+    (user) => user.id !== followingUserId
+  );
+
+  try {
+    await axios.delete(`${apiUrl}/user/follow/${followingUserId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    dispatch(setMessage("success", true, "User successfully unfollowed."));
+    dispatch(deleteFavoriteUser(newFollowingUsers));
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.data.message);
+      dispatch(setMessage("danger", true, error.response.data.message));
+    } else {
+      console.log(error.message);
+      dispatch(setMessage("danger", true, error.message));
+    }
+  }
+  dispatch(appDoneLoading());
 };

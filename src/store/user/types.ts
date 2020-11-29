@@ -3,6 +3,7 @@ export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
 export const LOG_OUT = "LOG_OUT";
 export const UPDATE_SUCCESS = "UPDATE_SUCCESS";
 export const UPDATE_PASSWORD_SUCCESS = "UPDATE_PASSWORD_SUCCESS";
+export const DELETE_FAVORITE_USER = "DELETE_FAVORITE_USER";
 
 export interface UserState {
   token?: string;
@@ -16,6 +17,12 @@ export interface UserState {
   accountBlocked?: boolean;
   createdAt?: string;
   updatedAt?: string;
+  following: FollowingUserObject[];
+}
+
+export interface FollowingUserObject {
+  id: number;
+  followingUsers: {};
 }
 
 export interface User {
@@ -30,6 +37,7 @@ export interface User {
   accountBlocked: boolean;
   createdAt: string;
   updatedAt: string;
+  following: FollowingUserObject[];
 }
 
 export interface UserWithoutToken {
@@ -43,6 +51,7 @@ export interface UserWithoutToken {
   accountBlocked: boolean;
   createdAt: string;
   updatedAt: string;
+  following: FollowingUserObject[];
 }
 
 export interface UpdateUser {
@@ -82,9 +91,15 @@ interface UpdateUserPasswordAction {
   payload: UpdateUserPassword;
 }
 
+interface DeleteFavoriteUserAction {
+  type: typeof DELETE_FAVORITE_USER;
+  payload: FollowingUserObject[];
+}
+
 export type UserActionTypes =
   | LoginAction
   | LogoutAction
   | TokenValidAction
   | UpdateUserAction
-  | UpdateUserPasswordAction;
+  | UpdateUserPasswordAction
+  | DeleteFavoriteUserAction;
