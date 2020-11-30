@@ -40,7 +40,7 @@ export default function AllLeaves() {
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
-          justifyContent: "space-around",
+          justifyContent: "space-evenly",
         }}
       >
         {plants.map((plant) => {
@@ -49,7 +49,7 @@ export default function AllLeaves() {
               key={plant.id}
               className="mb-4"
               style={{
-                width: "25vw",
+                width: "30%",
                 margin: "0 2rem 0 0",
                 justifyContent: "center",
                 alignItems: "center",

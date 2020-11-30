@@ -4,7 +4,7 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import { selectUser } from "../../store/user/selectors";
-import { Card, Container } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 import { fetchAllPlants } from "../../store/plants/actions";
 import { selectMyPlants } from "../../store/plants/selectors";
 
@@ -20,19 +20,24 @@ export default function MyLeavesPage() {
     dispatch(fetchAllPlants());
   }, [dispatch, plants.length]);
 
-  if (!user.email) {
+  if (!user.token) {
     return <Redirect to="/"></Redirect>;
   }
 
   return (
     <div className="all-leaves-container">
       <h1 className="my-leaves-page-title">My Leaves</h1>
+      <NavLink to={`/leaves/add`}>
+        <Button variant="outline-success" className="mb-4" type="submit">
+          Add new Leaf
+        </Button>
+      </NavLink>
       <Container
         style={{
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
-          justifyContent: "space-around",
+          justifyContent: "space-evenly",
         }}
       >
         {plants.map((plant) => {
@@ -41,7 +46,7 @@ export default function MyLeavesPage() {
               key={plant.id}
               className="mb-4"
               style={{
-                width: "25vw",
+                width: "30%",
                 margin: "0 2rem 0 0",
                 justifyContent: "center",
                 alignItems: "center",

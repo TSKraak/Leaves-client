@@ -18,6 +18,7 @@ import {
   PlantSuggestions,
   UserWithFavoriteUsers,
   ADD_PLANT_DETAILS,
+  ADD_NEW_PLANT,
 } from "./types";
 import { selectToken } from "../user/selectors";
 
@@ -205,6 +206,62 @@ export const postNewComment = (text: string, plantId: number): AppThunk => {
       const newComment = response.data;
 
       dispatch(addNewComment(newComment));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
+const addNewPlant = (newPlant: Plant): PlantActionTypes => {
+  return { type: ADD_NEW_PLANT, payload: newPlant };
+};
+
+export const submitNewPlant = (
+  name: string,
+  scientificName?: string,
+  description?: string,
+  imageUrl?: string,
+  waterPeriodDays?: number,
+  waterAlert?: string,
+  fertilisePeriodDays?: number,
+  fertiliseAlert?: string
+): AppThunk => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    const token = selectToken(getState());
+    console.log("HELLO 1");
+    try {
+      const response = await axios.post(
+        `${apiUrl}/plants`,
+        {
+          name,
+          scientificName,
+          description,
+          imageUrl,
+          waterPeriodDays,
+          waterAlert,
+          fertilisePeriodDays,
+          fertiliseAlert,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      const newPlant = response.data;
+      console.log("HELLO 2");
+
+      dispatch(addNewPlant(newPlant));
+      dispatch(
+        showMessageWithTimeout("success", true, "Leaf successfully added.")
+      );
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {

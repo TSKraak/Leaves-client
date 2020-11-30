@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
 import { Button, Card, Container } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import "./FavoriteLeaves.scss";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFavoriteUserPlants } from "../../store/plants/actions";
 import { selectFavoriteUsersPlants } from "../../store/plants/selectors";
 import { removeFavoriteUser } from "../../store/user/actions";
+import { selectUser } from "../../store/user/selectors";
 
 export default function FavoriteLeaves() {
   const dispatch = useDispatch();
   const plants = useSelector(selectFavoriteUsersPlants);
+  const user = useSelector(selectUser);
 
   const clickToUnFollow = async (id: number) => {
     await dispatch(removeFavoriteUser(id));
@@ -24,6 +26,10 @@ export default function FavoriteLeaves() {
     dispatch(fetchFavoriteUserPlants());
   }, [dispatch, plants.length]);
 
+  if (!user.token) {
+    return <Redirect to="/"></Redirect>;
+  }
+
   return (
     <div className="all-leaves-container">
       <Container
@@ -31,7 +37,7 @@ export default function FavoriteLeaves() {
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
-          justifyContent: "space-around",
+          justifyContent: "space-evenly",
         }}
       >
         {plants.map((plant) => {
@@ -40,7 +46,7 @@ export default function FavoriteLeaves() {
               key={plant.id}
               className="mb-4"
               style={{
-                width: "25vw",
+                width: "30%",
                 margin: "0 2rem 0 0",
                 justifyContent: "center",
                 alignItems: "center",
