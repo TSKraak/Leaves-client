@@ -6,12 +6,15 @@ export const ADD_MY_PLANTS = "ADD_MY_PLANTS";
 export const ADD_FAVORITE_USER_PLANTS = "ADD_FAVORITE_USER_PLANTS";
 export const ADD_PLANT_DETAILS = "ADD_PLANT_DETAILS";
 export const ADD_NEW_COMMENT = "ADD_NEW_COMMENT";
+export const ADD_NEW_PLANT = "ADD_NEW_PLANT";
+export const ADD_SEARCH_RESULTS = "ADD_SEARCH_RESULTS";
 
 export interface PlantsState {
   suggestions: PlantSuggestions[];
   all: Plant[];
   favoriteUserPlants: UserWithFavoriteUsers;
   plantDetails: Plant;
+  searchResults: [];
 }
 
 export interface PlantSuggestions {
@@ -125,10 +128,22 @@ interface AddNewCommentAction {
   payload: Comment;
 }
 
+interface AddNewPlantAction {
+  type: typeof ADD_NEW_PLANT;
+  payload: Plant;
+}
+
+interface AddSearchResultsAction {
+  type: typeof ADD_SEARCH_RESULTS;
+  payload: [];
+}
+
 export type PlantActionTypes =
   | AddPlantSuggestionsAction
   | AddAllPlantsAction
   | AddMyPlantsAction
   | AddFavoriteUserPlantsAction
   | AddPlantDetailsAction
-  | AddNewCommentAction;
+  | AddNewCommentAction
+  | AddNewPlantAction
+  | AddSearchResultsAction;

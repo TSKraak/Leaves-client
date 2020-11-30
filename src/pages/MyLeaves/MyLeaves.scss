@@ -1,3 +1,7 @@
+.all-leaves-container {
+  text-align: center;
+}
+
 .my-leaves-page-title {
   text-align: center;
   color: rgb(23, 119, 23);
@@ -8,8 +12,8 @@
 .plant-image {
   margin-top: 1rem;
   height: 25rem;
-  width: 23vw;
-  object-fit: cover; /* Do not scale the image */
+  width: 90%;
+  object-fit: cover;
   object-position: center; /* Center the image within the element */
   border-radius: 2rem;
 }

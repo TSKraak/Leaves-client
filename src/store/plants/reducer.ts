@@ -2,8 +2,10 @@ import {
   ADD_ALL_PLANTS,
   ADD_FAVORITE_USER_PLANTS,
   ADD_NEW_COMMENT,
+  ADD_NEW_PLANT,
   ADD_PLANT_DETAILS,
   ADD_PLANT_SUGGESTIONS,
+  ADD_SEARCH_RESULTS,
   PlantActionTypes,
   PlantsState,
 } from "./types";
@@ -46,6 +48,7 @@ const initialState: PlantsState = {
     },
     comments: [],
   },
+  searchResults: [],
 };
 
 // eslint-disable-next-line
@@ -73,6 +76,18 @@ export default (state = initialState, action: PlantActionTypes) => {
           ...state.plantDetails,
           comments: [...state.plantDetails.comments, action.payload],
         },
+      };
+
+    case ADD_NEW_PLANT:
+      return {
+        ...state,
+        all: [...state.all, action.payload],
+      };
+
+    case ADD_SEARCH_RESULTS:
+      return {
+        ...state,
+        searchResults: action.payload,
       };
 
     default:

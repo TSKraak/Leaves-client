@@ -16,6 +16,7 @@ import LeavesDetailPage from "./pages/LeavesDetailPage";
 import ProfilePage from "./pages/ProfilePage";
 import MyLeavesPage from "./pages/MyLeaves";
 import PlantSuggestionDetailsPage from "./pages/PlantSuggestionDetailsPage";
+import NewLeafPage from "./pages/NewLeafPage";
 
 const NotFound = () => {
   return <h3>Oops, sorry. Page doesn't exist.</h3>;
@@ -24,7 +25,6 @@ const NotFound = () => {
 function App() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectAppLoading);
-  // const user = useSelector(selectUser);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
@@ -60,6 +60,10 @@ function App() {
 
         <Route exact path="/leaves/favorites">
           <LeavesPage />
+        </Route>
+
+        <Route exact path="/leaves/add">
+          <NewLeafPage />
         </Route>
 
         <Route exact path="/leaves/:id">

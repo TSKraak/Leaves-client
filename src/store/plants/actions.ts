@@ -18,6 +18,8 @@ import {
   PlantSuggestions,
   UserWithFavoriteUsers,
   ADD_PLANT_DETAILS,
+  ADD_NEW_PLANT,
+  ADD_SEARCH_RESULTS,
 } from "./types";
 import { selectToken } from "../user/selectors";
 
@@ -217,4 +219,100 @@ export const postNewComment = (text: string, plantId: number): AppThunk => {
       dispatch(appDoneLoading());
     }
   };
+};
+
+const addNewPlant = (newPlant: Plant): PlantActionTypes => {
+  return { type: ADD_NEW_PLANT, payload: newPlant };
+};
+
+export const submitNewPlant = (
+  name: string,
+  scientificName?: string,
+  description?: string,
+  imageUrl?: string,
+  waterPeriodDays?: number,
+  waterAlert?: string,
+  fertilisePeriodDays?: number,
+  fertiliseAlert?: string
+): AppThunk => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    const token = selectToken(getState());
+    console.log("HELLO 1");
+    try {
+      const response = await axios.post(
+        `${apiUrl}/plants`,
+        {
+          name,
+          scientificName,
+          description,
+          imageUrl,
+          waterPeriodDays,
+          waterAlert,
+          fertilisePeriodDays,
+          fertiliseAlert,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      const newPlant = response.data;
+      console.log("HELLO 2");
+
+      dispatch(addNewPlant(newPlant));
+      dispatch(
+        showMessageWithTimeout("success", true, "Leaf successfully added.")
+      );
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
+const addSearchResults = (newSearchResults: []): PlantActionTypes => {
+  return {
+    type: ADD_SEARCH_RESULTS,
+    payload: newSearchResults,
+  };
+};
+
+export const searchPlantSpecies = (imageUrl: string): AppThunk => async (
+  dispatch,
+  getState
+) => {
+  dispatch(appLoading());
+
+  try {
+    const res = await axios.get(
+      `https://cors-anywhere.herokuapp.com/https://my-api.plantnet.org/v2/identify/all?api-key=2a10hyYJiFL2AIBfCTGIu6kDO&images=${imageUrl}&organs=leaf`
+    );
+    const searchResults = res.data.results;
+
+    dispatch(addSearchResults(searchResults));
+
+    if (res.data.remainingIdentificationRequests === 1 || !searchResults) {
+      showMessageWithTimeout(
+        "danger",
+        true,
+        "Today's limit reached for searching plant species."
+      );
+    }
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.data.message);
+      dispatch(setMessage("danger", true, error.response.data.message));
+    } else {
+      console.log(error.message);
+      dispatch(setMessage("danger", true, error.message));
+    }
+  }
+  dispatch(appDoneLoading());
 };
