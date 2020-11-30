@@ -5,6 +5,9 @@ import { useDispatch } from "react-redux";
 import ImageUploader from "../../components/ImageUploader";
 import { submitNewPlant } from "../../store/plants/actions";
 import { useHistory } from "react-router-dom";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import FindPlantSpecies from "../../components/FindPlantSpecies";
 
 const dateObj = new Date();
 const month = dateObj.getUTCMonth() + 1;
@@ -75,6 +78,20 @@ export default function NewLeafPage() {
               type="text"
               placeholder="Enter scientific name"
             />
+            <Form.Text className="text-muted">
+              If you don't know the species of the plant, you can upload a
+              picture here.<br></br>
+              You will get suggestions of which plant it probably is.<br></br>
+              <Popup
+                trigger={
+                  <Button variant="outline-success">Find species</Button>
+                }
+                position="right center"
+                modal
+              >
+                <FindPlantSpecies />
+              </Popup>
+            </Form.Text>
           </Form.Group>
 
           <Form.Group controlId="formBasicDescription">

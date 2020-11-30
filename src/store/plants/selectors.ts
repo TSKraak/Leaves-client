@@ -42,3 +42,6 @@ export const selectFavoriteUsersPlants = (state: RootState) => {
 
 export const selectPlantDetails = (state: RootState) =>
   state.plants.plantDetails;
+
+export const selectSearchResults = (state: RootState) =>
+  state.plants.searchResults;

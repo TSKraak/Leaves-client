@@ -19,6 +19,7 @@ import {
   UserWithFavoriteUsers,
   ADD_PLANT_DETAILS,
   ADD_NEW_PLANT,
+  ADD_SEARCH_RESULTS,
 } from "./types";
 import { selectToken } from "../user/selectors";
 
@@ -274,4 +275,44 @@ export const submitNewPlant = (
       dispatch(appDoneLoading());
     }
   };
+};
+
+const addSearchResults = (newSearchResults: []): PlantActionTypes => {
+  return {
+    type: ADD_SEARCH_RESULTS,
+    payload: newSearchResults,
+  };
+};
+
+export const searchPlantSpecies = (imageUrl: string): AppThunk => async (
+  dispatch,
+  getState
+) => {
+  dispatch(appLoading());
+
+  try {
+    const res = await axios.get(
+      `https://cors-anywhere.herokuapp.com/https://my-api.plantnet.org/v2/identify/all?api-key=2a10hyYJiFL2AIBfCTGIu6kDO&images=${imageUrl}&organs=leaf`
+    );
+    const searchResults = res.data.results;
+
+    dispatch(addSearchResults(searchResults));
+
+    if (res.data.remainingIdentificationRequests === 1 || !searchResults) {
+      showMessageWithTimeout(
+        "danger",
+        true,
+        "Today's limit reached for searching plant species."
+      );
+    }
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.data.message);
+      dispatch(setMessage("danger", true, error.response.data.message));
+    } else {
+      console.log(error.message);
+      dispatch(setMessage("danger", true, error.message));
+    }
+  }
+  dispatch(appDoneLoading());
 };

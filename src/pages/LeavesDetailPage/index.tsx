@@ -96,6 +96,7 @@ export default function LeavesDetailPage() {
       </div>
       {user.id === plant.user.id ? <UpdateLeafForm /> : undefined}
       <div className="comments-container">
+        <h4>Comments</h4>
         {plant.comments.map((comment) => {
           return (
             <div key={comment.id} className="comment-container">
@@ -106,7 +107,7 @@ export default function LeavesDetailPage() {
                   alt="profile pic"
                 />
                 <p>
-                  By {comment.user.firstName} {user.lastName}
+                  By {comment.user.firstName} {comment.user.lastName}
                   <br></br>On{" "}
                   {moment(comment.createdAt).format("DD-MM-YYYY HH:mm")}
                 </p>
