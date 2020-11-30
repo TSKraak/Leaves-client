@@ -11,6 +11,8 @@ import {
   ADD_ALL_PLANTS,
   ADD_PLANT_SUGGESTIONS,
   ADD_FAVORITE_USER_PLANTS,
+  ADD_NEW_COMMENT,
+  Comment,
   Plant,
   PlantActionTypes,
   PlantSuggestions,
@@ -167,6 +169,42 @@ export const updatePlant = (
       dispatch(
         showMessageWithTimeout("success", true, "Leaf successfully updated.")
       );
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
+const addNewComment = (newComment: Comment): PlantActionTypes => {
+  return { type: ADD_NEW_COMMENT, payload: newComment };
+};
+
+export const postNewComment = (text: string, plantId: number): AppThunk => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    const token = selectToken(getState());
+
+    try {
+      const response = await axios.post(
+        `${apiUrl}/comments/${plantId}`,
+        {
+          text,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      const newComment = response.data;
+
+      dispatch(addNewComment(newComment));
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {

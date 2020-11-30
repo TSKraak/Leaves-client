@@ -7,6 +7,7 @@ import { fetchPlantDetails } from "../../store/plants/actions";
 import { selectPlantDetails } from "../../store/plants/selectors";
 import { selectUser } from "../../store/user/selectors";
 import UpdateLeafForm from "../../components/UpdateLeafForm";
+import NewCommentForm from "../../components/NewCommentForm";
 
 interface Parameters {
   id: string;
@@ -94,6 +95,31 @@ export default function LeavesDetailPage() {
         </div>
       </div>
       {user.id === plant.user.id ? <UpdateLeafForm /> : undefined}
+      <div className="comments-container">
+        {plant.comments.map((comment) => {
+          return (
+            <div key={comment.id} className="comment-container">
+              <div className="profile-picture-container">
+                <img
+                  className="profile-picture"
+                  src={comment.user.imageUrl}
+                  alt="profile pic"
+                />
+                <p>
+                  By {comment.user.firstName} {user.lastName}
+                  <br></br>On{" "}
+                  {moment(comment.createdAt).format("DD-MM-YYYY HH:mm")}
+                </p>
+              </div>
+
+              <div className="comment-text-container">
+                <p>{comment.text}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      {user.email ? <NewCommentForm /> : undefined}
     </div>
   );
 }
