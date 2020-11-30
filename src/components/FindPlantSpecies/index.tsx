@@ -5,6 +5,15 @@ import { searchPlantSpecies } from "../../store/plants/actions";
 import { selectSearchResults } from "../../store/plants/selectors";
 import ImageUploader from "../ImageUploader";
 
+interface SearchResult {
+  score: number;
+  species: {
+    scientificNameWithoutAuthor: string;
+    family: { scientificNameWithoutAuthor: string };
+    commonNames: [];
+  };
+}
+
 export default function FindPlantSpecies() {
   const [imageUrl, setImageUrl] = useState("");
   const dispatch = useDispatch();
@@ -56,7 +65,7 @@ export default function FindPlantSpecies() {
       </Form>
       {!searchResults
         ? undefined
-        : searchResults.map((result: any) => {
+        : searchResults.map((result: SearchResult) => {
             return (
               <Container>
                 <Row>
