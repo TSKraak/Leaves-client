@@ -1,6 +1,7 @@
 import {
   ADD_ALL_PLANTS,
   ADD_FAVORITE_USER_PLANTS,
+  ADD_NEW_COMMENT,
   ADD_PLANT_DETAILS,
   ADD_PLANT_SUGGESTIONS,
   PlantActionTypes,
@@ -43,6 +44,7 @@ const initialState: PlantsState = {
       updatedAt: "",
       following: [],
     },
+    comments: [],
   },
 };
 
@@ -62,6 +64,15 @@ export default (state = initialState, action: PlantActionTypes) => {
       return {
         ...state,
         plantDetails: { ...state.plantDetails, ...action.payload },
+      };
+
+    case ADD_NEW_COMMENT:
+      return {
+        ...state,
+        plantDetails: {
+          ...state.plantDetails,
+          comments: [...state.plantDetails.comments, action.payload],
+        },
       };
 
     default:

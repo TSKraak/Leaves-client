@@ -5,6 +5,7 @@ export const ADD_ALL_PLANTS = "ADD_ALL_PLANTS";
 export const ADD_MY_PLANTS = "ADD_MY_PLANTS";
 export const ADD_FAVORITE_USER_PLANTS = "ADD_FAVORITE_USER_PLANTS";
 export const ADD_PLANT_DETAILS = "ADD_PLANT_DETAILS";
+export const ADD_NEW_COMMENT = "ADD_NEW_COMMENT";
 
 export interface PlantsState {
   suggestions: PlantSuggestions[];
@@ -42,6 +43,7 @@ export interface Plant {
   createdAt: string;
   updatedAt: string;
   user: User;
+  comments: Comment[];
 }
 
 export interface FavoriteUserWithPlants {
@@ -79,6 +81,20 @@ export interface UserWithFavoriteUsers {
   following: FavoriteUserWithPlants[];
 }
 
+export interface Comment {
+  id: number;
+  text: string;
+  userId: number;
+  plantId: number;
+  createdAt: string;
+  updatedAt: string;
+  user: {
+    firstName: string;
+    lastName: string;
+    imageUrl: string;
+  };
+}
+
 interface AddPlantSuggestionsAction {
   type: typeof ADD_PLANT_SUGGESTIONS;
   payload: PlantSuggestions[];
@@ -104,9 +120,15 @@ interface AddPlantDetailsAction {
   payload: Plant;
 }
 
+interface AddNewCommentAction {
+  type: typeof ADD_NEW_COMMENT;
+  payload: Comment;
+}
+
 export type PlantActionTypes =
   | AddPlantSuggestionsAction
   | AddAllPlantsAction
   | AddMyPlantsAction
   | AddFavoriteUserPlantsAction
-  | AddPlantDetailsAction;
+  | AddPlantDetailsAction
+  | AddNewCommentAction;
