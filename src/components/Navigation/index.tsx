@@ -24,6 +24,9 @@ export default function Navigation() {
           {user.token ? (
             <NavbarItem path="/myleaves" linkText="My Leaves" />
           ) : null}
+          {user.token ? (
+            <NavbarItem path="/schedule" linkText="Schedule" />
+          ) : null}
           {loginLogoutControls}
         </Nav>
       </Navbar.Collapse>
