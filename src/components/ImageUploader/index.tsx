@@ -12,7 +12,7 @@ export default function ImageUploader({ uploadPreset, uploadImageUrl }) {
       },
 
       (error, result) => {
-        console.log(error, result);
+        // console.log(error, result);
 
         if (result.event === "success") {
           uploadImageUrl(result.info.url);

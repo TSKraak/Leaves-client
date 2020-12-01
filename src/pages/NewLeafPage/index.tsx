@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import "./NewLeafPage.scss";
 import { Button, Col, Form } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ImageUploader from "../../components/ImageUploader";
 import { submitNewPlant } from "../../store/plants/actions";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import FindPlantSpecies from "../../components/FindPlantSpecies";
+import { selectUser } from "../../store/user/selectors";
 
 const curr = new Date();
 curr.setDate(curr.getDate());
 export const newDate = curr.toISOString().substr(0, 10);
 
 export default function NewLeafPage() {
+  const user = useSelector(selectUser);
   const [name, setName] = useState("");
   const [scientificName, setScientificName] = useState("");
   const [description, setDescription] = useState("");
@@ -24,6 +26,10 @@ export default function NewLeafPage() {
   const [fertiliseAlert, setFertiliseAlert] = useState(newDate);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  if (!user.token) {
+    return <Redirect to="/"></Redirect>;
+  }
 
   const uploadImageUrl = (url: string) => {
     setImageUrl(url);

@@ -10,9 +10,10 @@ import {
 import { selectAllPlants } from "../../store/plants/selectors";
 import { NavLink } from "react-router-dom";
 import { addFavoriteUser, removeFavoriteUser } from "../../store/user/actions";
-import { selectFollowingUsers } from "../../store/user/selectors";
+import { selectFollowingUsers, selectUser } from "../../store/user/selectors";
 
 export default function AllLeaves() {
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const plants = useSelector(selectAllPlants);
   const followingUsers = useSelector(selectFollowingUsers);
@@ -69,7 +70,9 @@ export default function AllLeaves() {
                 </Card.Subtitle>
                 <Card.Text>{plant.description}</Card.Text>
               </Card.Body>
-              {followingUsers.includes(plant.user.id) ? (
+              {!user.token ? undefined : followingUsers.includes(
+                  plant.user.id
+                ) ? (
                 <Button
                   className="mb-4"
                   variant="outline-danger"
