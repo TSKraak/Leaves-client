@@ -98,6 +98,12 @@ export interface Comment {
   };
 }
 
+export interface ReminderData {
+  title: string;
+  startDate: Date;
+  endDate: Date;
+}
+
 interface AddPlantSuggestionsAction {
   type: typeof ADD_PLANT_SUGGESTIONS;
   payload: PlantSuggestions[];

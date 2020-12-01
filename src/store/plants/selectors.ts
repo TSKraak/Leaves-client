@@ -1,5 +1,5 @@
 import { RootState } from "../rootReducer";
-import { Plant } from "./types";
+import { Plant, ReminderData } from "./types";
 
 export const selectSuggestions = (state: RootState) => state.plants.suggestions;
 export const selectAllPlants = (state: RootState) => {
@@ -45,3 +45,32 @@ export const selectPlantDetails = (state: RootState) =>
 
 export const selectSearchResults = (state: RootState) =>
   state.plants.searchResults;
+
+export const selectReminderData = (state: RootState) => {
+  const reminders: ReminderData[] = [];
+
+  const plants = state.plants.all;
+  const myPlants = plants.filter((plant) => plant.user.id === state.user.id);
+
+  myPlants.forEach((plant) => {
+    const reminderData = {
+      title: `Water ${plant.name}`,
+      startDate: new Date(`${plant.waterAlert}T10:00:00Z`),
+      endDate: new Date(`${plant.waterAlert}T11:00:00Z`),
+    };
+
+    reminders.push(reminderData);
+  });
+
+  myPlants.forEach((plant) => {
+    const reminderData = {
+      title: `Fertilise ${plant.name}`,
+      startDate: new Date(`${plant.fertiliseAlert}T10:00:00Z`),
+      endDate: new Date(`${plant.fertiliseAlert}T11:00:00Z`),
+    };
+
+    reminders.push(reminderData);
+  });
+
+  return reminders;
+};
