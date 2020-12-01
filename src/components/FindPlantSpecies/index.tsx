@@ -65,9 +65,9 @@ export default function FindPlantSpecies() {
       </Form>
       {!searchResults
         ? undefined
-        : searchResults.map((result: SearchResult) => {
+        : searchResults.map((result: SearchResult, i: number) => {
             return (
-              <Container>
+              <Container key={i}>
                 <Row>
                   <Col
                     sm={2}
@@ -145,12 +145,14 @@ export default function FindPlantSpecies() {
                       border: "solid 1px lightgray",
                     }}
                   >
-                    {result.species.commonNames.map((name: string) => (
-                      <span>
-                        - {name}
-                        <br></br>
-                      </span>
-                    ))}
+                    {result.species.commonNames.map(
+                      (name: string, i: number) => (
+                        <span key={name + i}>
+                          - {name}
+                          <br></br>
+                        </span>
+                      )
+                    )}
                   </Col>
                 </Row>
               </Container>

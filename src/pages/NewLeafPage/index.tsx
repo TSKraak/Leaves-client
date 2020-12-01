@@ -9,12 +9,9 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import FindPlantSpecies from "../../components/FindPlantSpecies";
 
-const dateObj = new Date();
-const month = dateObj.getUTCMonth() + 1;
-const day = dateObj.getUTCDate();
-const year = dateObj.getUTCFullYear();
-
-export const newDate = year + "-" + month + "-" + day;
+const curr = new Date();
+curr.setDate(curr.getDate());
+export const newDate = curr.toISOString().substr(0, 10);
 
 export default function NewLeafPage() {
   const [name, setName] = useState("");
