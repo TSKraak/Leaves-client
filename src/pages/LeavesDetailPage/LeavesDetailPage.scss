@@ -39,18 +39,19 @@
   .comment-container {
     display: flex;
     flex-direction: row;
-    width: 50%;
+    width: 40%;
     border-top: solid 1px lightgray;
     border-bottom: solid 1px lightgray;
+    background: rgba(255, 255, 255, 0.5);
 
     .comment-text-container {
-      width: 40%;
+      width: 80%;
       margin-top: 0.5rem;
       margin-bottom: 0.5rem;
     }
 
     .profile-picture-container {
-      width: 10vw;
+      width: 20%;
       text-align: center;
 
       .profile-picture {

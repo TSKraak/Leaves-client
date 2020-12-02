@@ -46,53 +46,55 @@ function App() {
       <Navigation />
       {isLoading ? <Loading /> : null}
       <MessageBox />
-      <Switch>
-        <Route exact path="/">
-          <HomePage />
-        </Route>
+      <div className="App-Content">
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
 
-        <Route exact path="/plants/:id">
-          <PlantSuggestionDetailsPage />
-        </Route>
+          <Route exact path="/plants/:id">
+            <PlantSuggestionDetailsPage />
+          </Route>
 
-        <Route exact path="/leaves">
-          <LeavesPage />
-        </Route>
+          <Route exact path="/leaves">
+            <LeavesPage />
+          </Route>
 
-        <Route exact path="/leaves/favorites">
-          <LeavesPage />
-        </Route>
+          <Route exact path="/leaves/favorites">
+            <LeavesPage />
+          </Route>
 
-        <Route exact path="/leaves/add">
-          <NewLeafPage />
-        </Route>
+          <Route exact path="/leaves/add">
+            <NewLeafPage />
+          </Route>
 
-        <Route exact path="/leaves/:id">
-          <LeavesDetailPage />
-        </Route>
+          <Route exact path="/leaves/:id">
+            <LeavesDetailPage />
+          </Route>
 
-        <Route exact path="/myleaves">
-          <MyLeavesPage />
-        </Route>
+          <Route exact path="/myleaves">
+            <MyLeavesPage />
+          </Route>
 
-        <Route exact path="/schedule">
-          <MySchedule />
-        </Route>
+          <Route exact path="/schedule">
+            <MySchedule />
+          </Route>
 
-        <Route exact path="/profile">
-          <ProfilePage />
-        </Route>
+          <Route exact path="/profile">
+            <ProfilePage />
+          </Route>
 
-        <Route exact path="/login">
-          <Login />
-        </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
 
-        <Route exact path="/signup">
-          <SignUp />
-        </Route>
+          <Route exact path="/signup">
+            <SignUp />
+          </Route>
 
-        <Route path="/" component={NotFound} />
-      </Switch>
+          <Route path="/" component={NotFound} />
+        </Switch>
+      </div>
     </div>
   );
 }

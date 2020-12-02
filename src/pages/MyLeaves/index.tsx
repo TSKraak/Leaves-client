@@ -7,6 +7,7 @@ import { selectUser } from "../../store/user/selectors";
 import { Button, Card, Container } from "react-bootstrap";
 import { fetchAllPlants } from "../../store/plants/actions";
 import { selectMyPlants } from "../../store/plants/selectors";
+import { noLeafPicture } from "../../config/constants";
 
 export default function MyLeavesPage() {
   const user = useSelector(selectUser);
@@ -51,9 +52,15 @@ export default function MyLeavesPage() {
                 justifyContent: "center",
                 alignItems: "center",
                 textAlign: "center",
+                background: "rgb(255,255,255,0.8)",
+                borderRadius: "2rem",
               }}
             >
-              <img className="plant-image" src={plant.imageUrl} alt="plant" />
+              <img
+                className="plant-image"
+                src={!plant.imageUrl ? noLeafPicture : plant.imageUrl}
+                alt="plant"
+              />
 
               <Card.Body>
                 <NavLink

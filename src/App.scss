@@ -1,11 +1,37 @@
+.App {
+  display: block;
+  position: relative;
+  .App-Content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+.App::after {
+  content: "";
+  background: url(./images/leavesBg.jpg);
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
 .title-container {
   display: flex;
-  margin-top: 0.5rem;
-  margin-left: 0.5rem;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
 
   .title-text {
     margin: 0;
-    padding: 0;
+    padding-left: 0.5rem;
     font-size: 2rem;
     color: rgb(23, 119, 23);
     font-family: "Architects Daughter", cursive, Calibri;

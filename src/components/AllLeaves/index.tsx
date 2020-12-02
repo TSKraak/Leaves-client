@@ -11,6 +11,7 @@ import { selectAllPlants } from "../../store/plants/selectors";
 import { NavLink } from "react-router-dom";
 import { addFavoriteUser, removeFavoriteUser } from "../../store/user/actions";
 import { selectFollowingUsers, selectUser } from "../../store/user/selectors";
+import { noLeafPicture } from "../../config/constants";
 
 export default function AllLeaves() {
   const user = useSelector(selectUser);
@@ -54,9 +55,15 @@ export default function AllLeaves() {
                 margin: "0 2rem 0 0",
                 justifyContent: "center",
                 alignItems: "center",
+                background: "rgb(255,255,255,0.8)",
+                borderRadius: "2rem",
               }}
             >
-              <img className="plant-image" src={plant.imageUrl} alt="plant" />
+              <img
+                className="plant-image"
+                src={!plant.imageUrl ? noLeafPicture : plant.imageUrl}
+                alt="plant"
+              />
 
               <Card.Body>
                 <NavLink

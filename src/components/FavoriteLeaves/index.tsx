@@ -8,6 +8,7 @@ import { fetchFavoriteUserPlants } from "../../store/plants/actions";
 import { selectFavoriteUsersPlants } from "../../store/plants/selectors";
 import { removeFavoriteUser } from "../../store/user/actions";
 import { selectUser } from "../../store/user/selectors";
+import { noLeafPicture } from "../../config/constants";
 
 export default function FavoriteLeaves() {
   const dispatch = useDispatch();
@@ -50,9 +51,15 @@ export default function FavoriteLeaves() {
                 margin: "0 2rem 0 0",
                 justifyContent: "center",
                 alignItems: "center",
+                background: "rgb(255,255,255,0.8)",
+                borderRadius: "2rem",
               }}
             >
-              <img className="plant-image" src={plant.imageUrl} alt="plant" />
+              <img
+                className="plant-image"
+                src={!plant.imageUrl ? noLeafPicture : plant.imageUrl}
+                alt="plant"
+              />
 
               <Card.Body>
                 <NavLink

@@ -25,21 +25,21 @@ export default function NewCommentForm() {
 
   return (
     <div>
-      <Form as={Col} md={{ span: 6 }} className="mt-5">
-        <h5 className="mt-5 mb-2">New comment:</h5>
+      <Form as={Col} md={{ span: 4 }} className="mt-5">
+        <h5 className="mt-5">New comment:</h5>
         <Form.Group controlId="formBasicCommentText">
           <Form.Control
             value={commentText}
             onChange={(event) => setCommentText(event.target.value)}
             type="text"
             as="textarea"
-            rows={3}
+            rows={4}
             placeholder="Type your comment here.."
             required
           />
         </Form.Group>
 
-        <Form.Group className="mt-5">
+        <Form.Group className="mt-3">
           <Button
             variant="primary"
             type="submit"
