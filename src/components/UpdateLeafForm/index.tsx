@@ -93,7 +93,7 @@ export default function UpdateLeafForm() {
             <Form.Group controlId="formBasicWaterPeriod">
               <Form.Label>Water every</Form.Label>
               <Form.Control
-                value={waterPeriodDays}
+                value={waterPeriodDays ? waterPeriodDays : undefined}
                 onChange={(event) =>
                   setWaterPeriodDays(parseInt(event.target.value))
                 }
@@ -116,7 +116,7 @@ export default function UpdateLeafForm() {
             <Form.Group controlId="formBasicFertilisePeriod">
               <Form.Label>Fertilise every</Form.Label>
               <Form.Control
-                value={fertilisePeriodDays}
+                value={fertilisePeriodDays ? fertilisePeriodDays : undefined}
                 onChange={(event) =>
                   setFertilisePeriodDays(parseInt(event.target.value))
                 }

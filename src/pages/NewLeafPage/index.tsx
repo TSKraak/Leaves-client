@@ -110,7 +110,7 @@ export default function NewLeafPage() {
           <Form.Group controlId="formBasicWaterPeriod">
             <Form.Label>Water period in days</Form.Label>
             <Form.Control
-              value={waterPeriodDays}
+              value={waterPeriodDays ? waterPeriodDays : undefined}
               onChange={(event) =>
                 setWaterPeriodDays(parseInt(event.target.value))
               }
@@ -134,7 +134,7 @@ export default function NewLeafPage() {
           <Form.Group controlId="formBasicFertilisePeriod">
             <Form.Label>Fertilise period in days</Form.Label>
             <Form.Control
-              value={fertilisePeriodDays}
+              value={fertilisePeriodDays ? fertilisePeriodDays : undefined}
               onChange={(event) =>
                 setFertilisePeriodDays(parseInt(event.target.value))
               }
