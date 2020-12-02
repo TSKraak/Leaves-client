@@ -32,7 +32,7 @@ export default function SignUp() {
   }
 
   return (
-    <Container>
+    <Container style={{ height: "100vh" }}>
       <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
         <h1 className="mt-5 mb-5">Login</h1>
         <Form.Group controlId="formBasicEmail">

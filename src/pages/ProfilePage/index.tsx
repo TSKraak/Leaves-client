@@ -9,12 +9,12 @@ import { selectUser } from "../../store/user/selectors";
 export default function ProfilePage() {
   const user = useSelector(selectUser);
 
-  if (!user.email) {
+  if (!user.token) {
     return <Redirect to="/"></Redirect>;
   }
 
   return (
-    <div>
+    <div className="Profile-Page">
       <h2 className="profile-page-title">Your Profile</h2>
       <div className="profile-page-container">
         <div className="profile-information">
