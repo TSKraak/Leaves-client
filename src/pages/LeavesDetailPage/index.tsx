@@ -26,7 +26,7 @@ export default function LeavesDetailPage() {
   }, [dispatch, id]);
 
   return (
-    <div>
+    <div className="LeavesDetail-Page">
       <h2 className="plant-detail-page-title">Leaf details</h2>
       <div className="plant-detail-page-container">
         <div className="plant-detail-information">
