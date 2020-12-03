@@ -85,7 +85,7 @@ export default function SignUp() {
           </Form.Group>
 
           <Form.Group controlId="formBasicCountry">
-            <Form.Label>Last name</Form.Label>
+            <Form.Label>Country</Form.Label>
             <Form.Control
               value={country}
               onChange={(event) => setCountry(event.target.value)}
