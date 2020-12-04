@@ -18,7 +18,7 @@ export default function ProfilePage() {
       <h2 className="profile-page-title">Your Profile</h2>
       <div className="profile-page-container">
         <div className="profile-information">
-          <table style={{ width: "25rem" }} className="profile-table">
+          <table style={{ width: "30rem" }} className="profile-table">
             <thead>
               <tr>
                 <th>Your information</th>
@@ -51,11 +51,15 @@ export default function ProfilePage() {
               </tr>
               <tr>
                 <td className="profile-detail-column-1">Account created</td>
-                <td>{moment(user.createdAt).format("DD-MM-YYYY HH:mm")}</td>
+                <td>
+                  {moment(user.createdAt).format("HH:mm - dddd DD MMMM YYYY")}
+                </td>
               </tr>
               <tr>
                 <td className="profile-detail-column-1">Last updated</td>
-                <td>{moment(user.updatedAt).format("DD-MM-YYYY HH:mm")}</td>
+                <td>
+                  {moment(user.updatedAt).format("HH:mm - dddd DD MMMM YYYY")}
+                </td>
               </tr>
             </tbody>
           </table>

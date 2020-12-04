@@ -159,7 +159,7 @@ export default function SignUp() {
             {!email || !password ? (
               <p style={{ color: "red" }}>Enter email and password</p>
             ) : password === checkPassword ? (
-              <Button variant="primary" type="submit" onClick={submitForm}>
+              <Button variant="success" type="submit" onClick={submitForm}>
                 Sign up
               </Button>
             ) : null}

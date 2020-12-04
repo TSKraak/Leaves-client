@@ -83,7 +83,8 @@ export default function FavoriteLeaves() {
               <Card.Footer style={{ alignSelf: "stretch" }}>
                 <small className="text-muted">
                   Posted on:{" "}
-                  {moment(plant.createdAt).format("DD-MM-YYYY HH:mm")} <br></br>
+                  {moment(plant.createdAt).format("ddd DD MMMM YYYY HH:mm")}{" "}
+                  <br></br>
                   by {plant.user.firstName} {plant.user.lastName}
                 </small>
               </Card.Footer>

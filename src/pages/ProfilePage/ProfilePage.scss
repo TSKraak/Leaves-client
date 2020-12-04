@@ -12,18 +12,16 @@
 .profile-page-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 
   .profile-detail-column-1 {
     width: 12rem;
     font-weight: bold;
+    float: left;
   }
 
   .profile-picture-container {
-    display: flex;
-    flex-direction: column;
+    margin-left: 10%;
     padding: 1rem;
-    text-align: center;
 
     .profile-picture {
       height: 20rem;

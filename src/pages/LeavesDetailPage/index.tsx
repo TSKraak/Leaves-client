@@ -8,6 +8,9 @@ import { selectPlantDetails } from "../../store/plants/selectors";
 import { selectUser } from "../../store/user/selectors";
 import UpdateLeafForm from "../../components/UpdateLeafForm";
 import NewCommentForm from "../../components/NewCommentForm";
+import { noLeafPicture } from "../../config/constants";
+import { NavLink } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 interface Parameters {
   id: string;
@@ -26,7 +29,7 @@ export default function LeavesDetailPage() {
   }, [dispatch, id]);
 
   return (
-    <div className="LeavesDetail-Page">
+    <div className={user.email ? "LeavesDetail-Page1" : "LeavesDetail-Page2"}>
       <h2 className="plant-detail-page-title">Leaf details</h2>
       <div className="plant-detail-page-container">
         <div className="plant-detail-information">
@@ -71,11 +74,15 @@ export default function LeavesDetailPage() {
               </tr>
               <tr>
                 <td className="plant-detail-column-1">Leaf created</td>
-                <td>{moment(plant.createdAt).format("DD-MM-YYYY HH:mm")}</td>
+                <td>
+                  {moment(plant.createdAt).format("HH:mm - dddd DD MMMM YYYY")}
+                </td>
               </tr>
               <tr>
                 <td className="plant-detail-column-1">Leaf updated</td>
-                <td>{moment(plant.updatedAt).format("DD-MM-YYYY HH:mm")}</td>
+                <td>
+                  {moment(plant.updatedAt).format("HH:mm - dddd DD MMMM YYYY")}
+                </td>
               </tr>
               <tr>
                 <td className="plant-detail-column-1">Owner</td>
@@ -89,7 +96,7 @@ export default function LeavesDetailPage() {
         <div className="plant-detail-picture-container">
           <img
             className="plant-detail-picture"
-            src={plant.imageUrl}
+            src={!plant.imageUrl ? noLeafPicture : plant.imageUrl}
             alt="plant detail pic"
           />
         </div>
@@ -97,30 +104,42 @@ export default function LeavesDetailPage() {
       {user.id === plant.user.id ? <UpdateLeafForm /> : undefined}
       <div className="comments-container">
         <h4>Comments</h4>
-        {plant.comments.map((comment) => {
-          return (
-            <div key={comment.id} className="comment-container">
-              <div className="profile-picture-container">
-                <img
-                  className="profile-picture"
-                  src={comment.user.imageUrl}
-                  alt="profile pic"
-                />
-                <p>
-                  By {comment.user.firstName} {comment.user.lastName}
-                  <br></br>On{" "}
-                  {moment(comment.createdAt).format("DD-MM-YYYY HH:mm")}
-                </p>
-              </div>
+        {plant.comments.length ? (
+          plant.comments.map((comment) => {
+            return (
+              <div key={comment.id} className="comment-container">
+                <div className="profile-picture-container">
+                  <img
+                    className="profile-picture"
+                    src={comment.user.imageUrl}
+                    alt="profile pic"
+                  />
+                  <p>
+                    By {comment.user.firstName} {comment.user.lastName}
+                    <br></br>On{" "}
+                    {moment(comment.createdAt).format("ddd DD MMMM YYYY HH:mm")}
+                  </p>
+                </div>
 
-              <div className="comment-text-container">
-                <p>{comment.text}</p>
+                <div className="comment-text-container">
+                  <p>{comment.text}</p>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        ) : (
+          <p style={{ marginTop: "1rem" }}>No comments yet, be the first!</p>
+        )}
       </div>
-      {user.email ? <NewCommentForm /> : undefined}
+      {user.email ? (
+        <NewCommentForm />
+      ) : (
+        <NavLink exact to="/login">
+          <Button className="mt-4" variant="success">
+            Login now!
+          </Button>
+        </NavLink>
+      )}
     </div>
   );
 }

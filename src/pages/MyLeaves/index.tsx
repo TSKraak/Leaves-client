@@ -77,7 +77,8 @@ export default function MyLeavesPage() {
               <Card.Footer style={{ alignSelf: "stretch" }}>
                 <small className="text-muted">
                   Posted on:{" "}
-                  {moment(plant.createdAt).format("DD-MM-YYYY HH:mm")} <br></br>
+                  {moment(plant.createdAt).format("ddd DD MMMM YYYY HH:mm")}{" "}
+                  <br></br>
                 </small>
               </Card.Footer>
             </Card>

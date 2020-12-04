@@ -41,7 +41,7 @@ export default function NewCommentForm() {
 
         <Form.Group className="mt-3">
           <Button
-            variant="primary"
+            variant="success"
             type="submit"
             disabled={commentText ? false : true}
             onClick={submitNewComment}
