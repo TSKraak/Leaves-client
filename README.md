@@ -1,8 +1,8 @@
-## 🌱 Leaves - A plant lovers community 🌿
+# 🌱 Leaves - A plant lovers community 🌿
 
 ## 🍀 What is this app about?
 
-[Check out the online running version now!](https://leaves-community.netlify.app/)
+[Check out the online running version now!](https://leaves-community.netlify.app/)<br>
 Login with r@k.com, password: kebab
 
 Leaves is a social platform where you can share your (favorite) plants with others users and friends. On the homepage a view popular suggestions are displayed if you are looking for a new plant. On the 'Leaves' page you can see all plants users added to share with the community.
