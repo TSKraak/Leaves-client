@@ -3,7 +3,7 @@ import "./LeavesDetailPage.scss";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { deletePlant, fetchPlantDetails } from "../../store/plants/actions";
+import { fetchPlantDetails } from "../../store/plants/actions";
 import { selectPlantDetails } from "../../store/plants/selectors";
 import { selectUser } from "../../store/user/selectors";
 import UpdateLeafForm from "../../components/UpdateLeafForm";
