@@ -19,6 +19,7 @@ import {
   UserWithFavoriteUsers,
   ADD_PLANT_DETAILS,
   ADD_NEW_PLANT,
+  REMOVE_PLANT,
   ADD_SEARCH_RESULTS,
 } from "./types";
 import { selectToken } from "../user/selectors";
@@ -238,7 +239,7 @@ export const submitNewPlant = (
   return async (dispatch, getState) => {
     dispatch(appLoading());
     const token = selectToken(getState());
-    console.log("HELLO 1");
+
     try {
       const response = await axios.post(
         `${apiUrl}/plants`,
@@ -257,11 +258,46 @@ export const submitNewPlant = (
         }
       );
       const newPlant = response.data;
-      console.log("HELLO 2");
 
       dispatch(addNewPlant(newPlant));
       dispatch(
         showMessageWithTimeout("success", true, "Leaf successfully added.")
+      );
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
+const removePlant = (newPlantList: Plant[]): PlantActionTypes => {
+  return { type: REMOVE_PLANT, payload: newPlantList };
+};
+
+export const deletePlant = (id: number): AppThunk => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    const token = selectToken(getState());
+
+    try {
+      await axios.delete(`${apiUrl}/plants/plant/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      const newPlantsList = getState().plants.all.filter(
+        (plant) => plant.id !== id
+      );
+
+      dispatch(removePlant(newPlantsList));
+      dispatch(
+        showMessageWithTimeout("success", true, "Leaf successfully removed.")
       );
       dispatch(appDoneLoading());
     } catch (error) {

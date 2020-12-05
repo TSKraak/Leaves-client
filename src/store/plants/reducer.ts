@@ -8,6 +8,7 @@ import {
   ADD_SEARCH_RESULTS,
   PlantActionTypes,
   PlantsState,
+  REMOVE_PLANT,
 } from "./types";
 
 const initialState: PlantsState = {
@@ -82,6 +83,12 @@ export default (state = initialState, action: PlantActionTypes) => {
       return {
         ...state,
         all: [...state.all, action.payload],
+      };
+
+    case REMOVE_PLANT:
+      return {
+        ...state,
+        all: action.payload,
       };
 
     case ADD_SEARCH_RESULTS:

@@ -3,7 +3,7 @@ import "./LeavesDetailPage.scss";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchPlantDetails } from "../../store/plants/actions";
+import { deletePlant, fetchPlantDetails } from "../../store/plants/actions";
 import { selectPlantDetails } from "../../store/plants/selectors";
 import { selectUser } from "../../store/user/selectors";
 import UpdateLeafForm from "../../components/UpdateLeafForm";
@@ -102,6 +102,7 @@ export default function LeavesDetailPage() {
         </div>
       </div>
       {user.id === plant.user.id ? <UpdateLeafForm /> : undefined}
+
       <div className="comments-container">
         <h4>Comments</h4>
         {plant.comments.length ? (
