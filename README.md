@@ -31,10 +31,10 @@ A user can add a new plant to their collection, upload a picture of it and searc
 
 ## 🍀 Project goals
 
-The goal of this project is to build a full-stack app, practicing known and exploring new technologies. I learned these new tools independently by reading its documentation, consultin forums and watching online videos.
+The goal of this project is to build a full-stack app, practicing known and exploring new technologies. I learned these new tools independently by reading its documentation, consulting forums and watching online videos.
 
 - Practice full-stack app development
-- Build a working prototype in 2 weeks
+- From scratch to a working prototype in <strong>just 2 weeks</strong>
 - Apply what we learned in Codaisseur's bootcamp
 - Extend with new technology independently
   - Using TypeScript for the first time

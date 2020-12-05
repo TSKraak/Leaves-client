@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import { selectUser } from "../../store/user/selectors";
 import { Button, Card, Container } from "react-bootstrap";
-import { fetchAllPlants } from "../../store/plants/actions";
+import { deletePlant, fetchAllPlants } from "../../store/plants/actions";
 import { selectMyPlants } from "../../store/plants/selectors";
 import { noLeafPicture } from "../../config/constants";
 
@@ -74,6 +74,13 @@ export default function MyLeavesPage() {
                 </Card.Subtitle>
                 <Card.Text>{plant.description}</Card.Text>
               </Card.Body>
+              <Button
+                className="mb-2"
+                variant="outline-danger"
+                onClick={() => dispatch(deletePlant(plant.id))}
+              >
+                Delete Leaf
+              </Button>
               <Card.Footer style={{ alignSelf: "stretch" }}>
                 <small className="text-muted">
                   Posted on:{" "}

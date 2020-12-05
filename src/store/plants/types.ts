@@ -8,6 +8,7 @@ export const ADD_PLANT_DETAILS = "ADD_PLANT_DETAILS";
 export const ADD_NEW_COMMENT = "ADD_NEW_COMMENT";
 export const ADD_NEW_PLANT = "ADD_NEW_PLANT";
 export const ADD_SEARCH_RESULTS = "ADD_SEARCH_RESULTS";
+export const REMOVE_PLANT = "REMOVE_PLANT";
 
 export interface PlantsState {
   suggestions: PlantSuggestions[];
@@ -139,6 +140,11 @@ interface AddNewPlantAction {
   payload: Plant;
 }
 
+interface RemovePlantAction {
+  type: typeof REMOVE_PLANT;
+  payload: Plant[];
+}
+
 interface AddSearchResultsAction {
   type: typeof ADD_SEARCH_RESULTS;
   payload: [];
@@ -152,4 +158,5 @@ export type PlantActionTypes =
   | AddPlantDetailsAction
   | AddNewCommentAction
   | AddNewPlantAction
+  | RemovePlantAction
   | AddSearchResultsAction;
