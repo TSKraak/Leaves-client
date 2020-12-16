@@ -20,7 +20,9 @@ export default function HomePage() {
 
   return (
     <div className="homepage-container">
-      <h1 className="welcome-text-homepage">Welcome to Leaves</h1>
+      <h1 className="welcome-text-homepage">
+        Welcome to Leaves {"\uD83C\uDF40"}
+      </h1>
       <h3>Popular houseplants</h3>
       <Container className="plant-suggestions-container">
         {plants.map((plant) => {
