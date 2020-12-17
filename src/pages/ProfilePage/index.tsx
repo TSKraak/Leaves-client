@@ -21,7 +21,7 @@ export default function ProfilePage() {
           <table style={{ width: "30rem" }} className="profile-table">
             <thead>
               <tr>
-                <th>Your information</th>
+                <th>Your account details</th>
               </tr>
             </thead>
             <tbody>
